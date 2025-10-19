@@ -745,7 +745,7 @@ printf("Thread execution completed.\n");
 return 0;
 }
 ```
-##23.Write a C program to create a thread that generates a random array of integers? 
+##23.
 ```c
 
 
