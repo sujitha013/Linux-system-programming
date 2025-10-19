@@ -804,5 +804,76 @@ return 0;
 ```
 ##25.Implement a C program to create a thread that performs multiplication of two matrices?
 ```c
+#include<stdio.h>
+#include<pthread.h>
+#define ROWS 100
+#define COLS 100
+int a[ROWS][COLS],b[ROWS][COLS],c[ROWS][COLS];
+int rows,cols;
+void*thread1(void*arg)
+{
+int i,j;
+printf("Enter elements for matrix a:");
+for(i=0;i<rows;i++)
+{
+for(j=0;j<cols;j++)
+{
+scanf("%d",&a[i][j]);
+}
+}
+printf("Enter elements for matrix b:");
+for(i=0;i<rows;i++)
+{
+for(j=0;j<cols;j++)
+{
+scanf("%d",&b[i][j]);
+}
+}
+
+return NULL;
+}
+void*thread2(void*arg)
+{
+int i,j,k;
+for(i=0;i<rows;i++)
+{
+for(j=0;j<cols;j++)
+{
+c[i][j]=0;
+c[i][j]=0;
+for(k=0;k<cols;k++)
+{
+c[i][j]+=a[i][k]*b[k][j];
+}
+}
+}
+printf("\nResult matrix:\n");
+for(i=0;i<rows;i++)
+{
+for(j=0;j<cols;j++)
+{
+printf("%d ",c[i][j]);
+}
+printf("\n");
+}
+return NULL;
+}
+int main()
+{
+pthread_t th1,th2;
+printf("Enter rows and cols:");
+scanf("%d%d",&rows,&cols);
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+pthread_create(&th2,NULL,thread2,NULL);
+pthread_join(th2,NULL);
+printf("Thread execution complete.\n");
+return 0;
+}
+```
+##26..Develop a C program to create a thread that calculates the average of numbers from 1 to 
+100? 
+```c
+
 
 
