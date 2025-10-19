@@ -578,4 +578,174 @@ pthread_mutex_destroy(&mtx);
 return 0;
 }
 ```
+##19.Write a C program to create a thread that checks if a given string is a palindrome using 
+dynamic programming with mutex locks?
+```c
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#include<pthread.h>
+#include<stdlib.h>
+pthread_mutex_t mtx;
+void*thread1(void*arg)
+{
+pthread_mutex_lock(&mtx);
+char *str=(char*)malloc(100*sizeof(char));
+printf("Enter string:");
+fgets(str,100,stdin);
+str[strcspn(str,"\n")]='\0';
+int start=0,end=strlen(str)-1,ispal=1;
+while(start<=end)
+{
+while(start<=end&&!isalpha(str[start]))
+{
+start++;
+}
+while(start<=end&&!isalpha(str[end]))
+{
+end--;
+}
+if(tolower(str[start])!=tolower(str[end]))
+{
+ispal=0;
+break;
+}
+start++;
+end--;
+}
+if(ispal)
+{
+printf("The string \"%s\" is a palindrome.\n",str);
+}
+else
+{
+printf("The string \"%s\" is not  a palindrome.\n",str);
+}
+free(str);
+pthread_mutex_unlock(&mtx);
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_mutex_init(&mtx,NULL);
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+printf("Thread execution completed.\n");
+pthread_mutex_destroy(&mtx);
+return 0;
+}
+```
+##20.Implement a C program to create a thread that performs selection sort on an array of 
+integers? 
+```c
+  GNU nano 7.2                                                                  thread_new.c *                                                                          #include<stdio.h>
+#include<pthread.h>
+#define SIZE 100
+int a[SIZE];
+int size;
+pthread_mutex_t mtx;
+void*thread1(void*arg)
+{
+pthread_mutex_lock(&mtx);
+int  i;
+printf("Enter Array elements from Thread1:");
+for(i=0;i<size;i++)
+{
+scanf("%d",&a[i]);
+}
+pthread_mutex_unlock(&mtx);
+return NULL;
+}
+void*thread2(void*arg)
+{
+pthread_mutex_lock(&mtx);
+int i,j,temp;
+printf("Sorted array from Thread2:");
+for(i=0;i<size;i++)
+{
+for(j=i+1;j<size;j++)
+{
+if(a[j]<a[i])
+{
+temp=a[i];
+a[i]=a[j];
+a[j]=temp;
+}
+}
+}
+for(i=0;i<size;i++)
+{
+printf("%d ",a[i]);
+}
+pthread_mutex_unlock(&mtx);
+return NULL;
+}
+
+int main()
+{
+pthread_t th1,th2;
+printf("Enter size:");
+scanf("%d",&size);
+pthread_mutex_init(&mtx,NULL);
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+pthread_create(&th2,NULL,thread2,NULL);
+pthread_join(th2,NULL);
+pthread_mutex_destroy(&mtx);
+printf("\nThread execution completed.\n");
+return 0;
+}
+```
+##21.Develop a C program to create a thread that calculates the area of a triangle? 
+```c
+#include<stdio.h>
+#include<pthread.h>
+void*thread(void*arg)
+{
+int b,h;
+printf("Enter Base:");
+scanf("%d",&b);
+printf("Enter Height:");
+scanf("%d",&h);
+int result=(b*h)/2;
+printf("Area of Triangle=%d\n",result);
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_create(&th1,NULL,thread,NULL);
+pthread_join(th1,NULL);
+printf("Thread execution completed.\n");
+return 0;
+```
+##22.Write a C program to create a thread that calculates the sum of squares of numbers from 1 
+to 100? 
+```c
+#include<stdio.h>
+#include<pthread.h>
+void*thread(void*arg)
+{
+int i,sq,sum_sq=0;
+for(i=1;i<=100;i++)
+{
+sq=i*i;
+sum_sq=sum_sq+sq;
+}
+printf("Sum of squares from 1 to 100:%d\n",sum_sq);
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_create(&th1,NULL,thread,NULL);
+pthread_join(th1,NULL);
+printf("Thread execution completed.\n");
+return 0;
+}
+```
+##23.Write a C program to create a thread that generates a random array of integers? 
+```c
+
 
