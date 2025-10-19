@@ -745,7 +745,64 @@ printf("Thread execution completed.\n");
 return 0;
 }
 ```
-##23.
+##23.Develop a C program to create a thread that calculates the greatest common divisor (GCD) 
+of two numbers? 
+```c
+#include<stdio.h>
+#include<pthread.h>
+void*thread(void*)
+{
+int a,b,i,gcd=0;
+printf("Enter a and b:");
+scanf("%d%d",&a,&b);
+int res=a>b?a:b;
+for(i=1;i<=res;i++)
+{
+if(a%i==0&&b%i==0)
+{
+gcd=i;
+}
+}
+printf("\nGreatest common divisior=%d\n",gcd);
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_create(&th1,NULL,thread,NULL);
+pthread_join(th1,NULL);
+printf("Thread execution completed.\n");
+return 0;
+}
+```
+##24.Implement a C program to create a thread that calculates the sum of even numbers from 1 
+to 100?
+```c
+#include<stdio.h>
+#include<pthread.h>
+void*thread(void*)
+{
+int i,sum=0;
+for(i=1;i<=100;i++)
+{
+if(i%2==0)
+{
+sum=sum+i;
+}
+}
+printf("Sum of Even numbers=%d\n",sum);
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_create(&th1,NULL,thread,NULL);
+pthread_join(th1,NULL);
+printf("Thread execution completed.\n");
+return 0;
+}
+```
+##25.Implement a C program to create a thread that performs multiplication of two matrices?
 ```c
 
 
