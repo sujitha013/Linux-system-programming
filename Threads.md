@@ -1526,7 +1526,279 @@ return 0;
 ##46.Implement a C program to create a thread that prints the ASCII values of characters in a 
 given string? 
 ```c
-
+#include<string.h>
+#include<stdio.h>
+#include<pthread.h>
+#include<ctype.h>
+void*thread1(void*arg)
+{
+char str[100];
+int i;
+printf("Enter string:");
+fgets(str,sizeof(str),stdin);
+str[strcspn(str,"\n")]='\0';
+printf("ASCII values of characters:\n");
+for(i=0;str[i]!='\0';i++)
+{
+if(isupper(str[i]))
+{
+printf("%c->%d\n",str[i],str[i]);
+}
+else
+{
+printf("%c->%d\n",str[i],str[i]);
+}
+}
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+printf("Thread execution completed.\n");
+return 0;
+}
+```
+##47.Develop a C program to create a thread that calculates the sum of all prime numbers up to 
+a given limit? 
+```c
+#include<stdio.h>
+#include<pthread.h>
+pthread_mutex_t mtx;
+void*thread1(void*arg)
+{
+pthread_mutex_lock(&mtx);
+int num,i,j,count,sum=0;
+printf("Enter a number:");
+scanf("%d",&num);
+for(i=1;i<=num;i++)
+{
+count=0;
+if(i==1)
+{
+continue;
+}
+for(j=2;j<=i/2;j++)
+{
+if(i%j==0)
+{
+count++;
+break;
+}
+}
+if(count==0)
+{
+sum=sum+i;
+}
+}
+printf("Sum of all prime numbers from 1 to %d is:%d\n",num,sum);
+pthread_mutex_unlock(&mtx);
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_mutex_init(&mtx,NULL);
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+printf("\nThread execution completed.\n");
+pthread_mutex_destroy(&mtx);
+return 0;
+}
+```
+##48.Write a C program to create a thread that calculates the area of a circle using a given 
+radius?
+```c
+#include<stdio.h>
+#include<pthread.h>
+void*thread1(void*arg)
+{
+float r,pie=3.14159;
+printf("Enter  radius:");
+scanf("%f",&r);
+float area=pie*r*r;
+printf("Area of circul:%.2f\n",area);
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+printf("Thread execution completed.\n");
+return 0;
+}
+```
+##50.Develop a C program to create a thread that calculates the average of a given array of 
+floating-point numbers?
+```c
+#include<stdio.h>
+#include<pthread.h>
+void*thread1(void*arg)
+{
+int n;
+float a[100],sum=0.00,avg;
+printf("Enter  n:");
+scanf("%d",&n);
+printf("Enter elements:");
+for(int i=0;i<n;i++)
+{
+scanf("%f",&a[i]);
+sum=sum+a[i];
+}
+avg=sum/n;
+printf("Average of array elements:%.2f\n",avg);
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+printf("Thread execution completed.\n");
+return 0;
+}
+```
+##51.Implement a C program to create a thread that prints the factors of a given number? 
+```c
+#include<stdio.h>
+#include<pthread.h>
+void*thread1(void*arg)
+{
+int num,i;
+printf("Enter a number:");
+scanf("%d",&num);
+printf("Factors of %d are:",num);
+for(i=1;i<=num;i++)
+{
+if(num%i==0)
+{
+printf("%d ",i);
+}
+}
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+printf("\nThread execution completed.\n");
+return 0;
+}
+```
+##52.Develop a C program to create a thread that prints the English alphabet in uppercase? 
+```c
+#include<stdio.h>
+#include<pthread.h>
+void*thread1(void*arg)
+{
+printf("Tread execution strated.\n");
+int i;
+for(i=65;i<=90;i++)
+{
+printf("%c ",i);
+}
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+printf("\nThread execution completed.\n");
+return 0;
+}                                                                                                                                    
+```
+##53.4.Implement a C program to create a thread that checks if a given number is divisible by 
+another given number? 
+```c
+#include<stdio.h>
+#include<pthread.h>
+void*thread1(void*arg)
+{
+int num1,num2;
+printf("Enter first number:");
+scanf("%d",&num1);
+printf("Enter second number:");
+scanf("%d",&num2);
+if(num1%num2==0)
+{
+printf("%d is divisiable by %d.\n",num1,num2);
+}
+else
+{
+printf("%d is not divisiable by %d.\n",num1,num2);
+}
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+printf("Thread execution completed.\n");
+return 0;
+}
+```
+##54.Develop a C program to create a thread that prints the multiplication table of a given 
+number up to a given limit?
+```c
+#include<stdio.h>
+#include<pthread.h>
+void*thread1(void*arg)
+{
+int n,limit,i;
+printf("Enter a number:");
+scanf("%d",&n);
+printf("Enter a limit:");
+scanf("%d",&limit);
+printf("Multiplication of a table :%d\n",n);
+for(i=1;i<=limit;i++)
+{
+printf("%dX%d=%d\n",n,i,n*i);
+}
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+printf("Thread execution completed.\n");
+return 0;
+}
+```
+##55.Develop a C program to create a thread that prints numbers from 10 to 1 in descending order 
+using mutex locks?
+```c
+#include<stdio.h>
+#include<pthread.h>
+pthread_mutex_t mtx;
+void*thread1(void*arg)
+{
+pthread_mutex_lock(&mtx);
+int i;
+printf("Thread strarting to print numbers  in desending order.\n");
+for(i=10;i>=1;i--)
+{
+printf("%d\n",i);
+}
+pthread_mutex_unlock(&mtx);
+return NULL;
+}
+int main()
+{
+pthread_t th1;
+pthread_mutex_init(&mtx,NULL);
+pthread_create(&th1,NULL,thread1,NULL);
+pthread_join(th1,NULL);
+pthread_mutex_destroy(&mtx);
+printf("Thread execution completed.\n");
+return 0;
+}
+```
 
 
 
