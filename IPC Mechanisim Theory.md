@@ -109,12 +109,12 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
 ## 20. What is difference between Named Pipe and Message Queue?  
  - ## Differences between Named Pipe and Message Queue:
   - ## Named Pipe (FIFO):
-   - Bidirectional (data can flow both ways)
-   - Used for communication between unrelated processes
-   - Data is read in stream mode, without message boundaries
-   - ## Message Queue:
-    -Not bidirectional (messages have a specific sender and receiver)
-    - Allows asynchronous communication between processes
-    - Maintains message boundaries and priority, providing more control over data flow
+     - Bidirectional (data can flow both ways)
+     - Used for communication between unrelated processes
+     - Data is read in stream mode, without message boundaries
+  - ## Message Queue:
+   - Not bidirectional (messages have a specific sender and receiver)
+   - Allows asynchronous communication between processes
+   - Maintains message boundaries and priority, providing more control over data flow 
 
  
