@@ -93,7 +93,29 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
   - -1 on failure and sets errno to indicate the error.
   - On success, it returns the number of bytes actually read from the file or communication channel.
   - If the end of file (EOF) is reached, it returns 0.
-## 18. What is meant by message queue?  
+## 18. What is meant by message queue? 
+- A message queue is an IPC mechanism used for communication between multiple unrelated processes.
+   - It allows processes to send and receive messages in a queue, ensuring asynchronous and ordered communication.
+   - Message queues overcome the limitations of pipes and named pipes, such as the lack of message prioritization and flexibility.
+## 19. Why we use message queues? 
+- We use message queues because they allow safe and efficient communication between multiple unrelated processes.
+  - ## Key reasons:
+   - Asynchronous communication: Sender and receiver don’t need to be active at the same time.
+   - Ordered delivery: Messages are delivered in FIFO order (or by priority).
+   - Avoids blocking: Processes don’t have to wait like in pipes or named pipes.
+   - Message boundaries: Each message is treated as a separate unit, unlike streams in pipes.
+ - ## Example use case:
+  - A client sends multiple requests to a server, and the server can process them in order without losing messages.
+## 20. What is difference between Named Pipe and Message Queue?  
+ - ## Differences between Named Pipe and Message Queue:
+  - ## Named Pipe (FIFO):
+   - Bidirectional (data can flow both ways)
+   - Used for communication between unrelated processes
+   - Data is read in stream mode, without message boundaries
+   - ## Message Queue:
+    - Not bidirectional (messages have a specific sender and receiver)
+    -  Allows asynchronous communication between processes
+    - Maintains message boundaries and priority, providing more control over data flow
 
 
  
