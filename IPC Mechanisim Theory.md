@@ -19,7 +19,7 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
  -  One for reading 
  -  These descriptors are automatically assigned to the next available indices in the file descriptor table.
  -  To create a pipe, we use the pipe() system call, which takes the array of file descriptors as an argument and sets up the communication channel between the parent and child processes.
-## 6. What is meant by Blocking Calls? 
+ ## 6. What is meant by Blocking Calls? 
 - Blocking calls are system or function calls that pause the execution of a process or program until a specific event occurs, such as waiting for user input or data from another process. The process cannot proceed until the required action is completed.
   ## 7. What are the types of Blocking Calls?
   - There are different types of blocking calls in IPC, depending on the mechanism:
@@ -34,18 +34,18 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
   - 5.ioctl() – Performs device-specific input/output operations.
   - 6.fcntl() – Performs various control operations on file descriptors.
 - These calls form the foundation for performing input/output operations and controlling device behavior in most operating systems.
-- ## 9. What are the I/O calls we are used in IPC Mechanisms?
+ ## 9. What are the I/O calls we are used in IPC Mechanisms?
 - The frequently used I/O calls in IPC mechanisms are:
  - open() – Opens a communication channel (like a pipe or FIFO).
  - close() – Closes the communication channel.
  - read() – Reads data from the channel.
  - write() – Writes data to the channel.
- - ## 10. What are the Blocking Calls used in IPC?
+   ## 10. What are the Blocking Calls used in IPC?
  - In IPC mechanisms, the major blocking calls are:
  - open() – Pauses the process until the communication channel (like a pipe or FIFO) is ready.
  - read() – Pauses the process until data becomes available on the channel.
  - These calls stop the execution of a process until the required data or message is available for communication.
- - ## 11. What is meant by Named Pipes?
+   ## 11. What is meant by Named Pipes?
  - Named pipes (also called FIFOs) are an IPC mechanism used for communication between two unrelated processes.
  - A named pipe is created using the mkfifo() system call, which takes two arguments:
   - 1.The name of the file object
@@ -59,3 +59,22 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
 - ## Example:
 - mkfifo("/tmp/myfifo", 0666);
 - This creates a FIFO named myfifo in the /tmp directory with read/write permissions.
+ ## 13. What is the call used to create a FIFO Object? 
+ - To create a FIFO (named pipe) object, we use the mkfifo() system call.
+ - It accepts two arguments:
+ - Name of the FIFO file object
+ - Permissions of the pipe
+ - ## Example:
+ - mkfifo("fifoobj", 0666);
+ - This creates a named pipe called fifoobj with read/write permissions for all users.
+  ##  14. What are the Blocking Calls used in Named Pipes? 
+  - In named pipes (FIFOs), the blocking calls are:
+  - open() – Pauses the process until the FIFO is opened by the other process.
+  - read() – Pauses the process until data becomes available to read from the FIFO.
+  - These calls ensure proper synchronization between the communicating processes.
+ ## 15. Why read system calls acts as a blocking call?
+  - The read() system call acts as a blocking call because when a server process opens a FIFO in read mode, it must wait for data from the client process.
+    - The read() call pauses the execution of the server process until data is available to be read from the client.
+    -  This ensures proper synchronization between the client and server.
+ ## 16. Difference between the Named Pipes and Pipes? 
+ 
