@@ -9,3 +9,6 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
 - 3.Shared Memory
 - 4.Message Queues
 - 5.Semaphores
+  ## 4. What is meant by “unicast” and “multicast” IPC?
+  - In IPC, unicast communication refers to data exchange between two related processes, such as a parent and child process created using the fork() system call.
+  - Multicast communication, on the other hand, involves data exchange between multiple unrelated processes, allowing one process to send messages to several receiving processes simultaneously.
