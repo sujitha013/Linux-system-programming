@@ -113,9 +113,8 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
    - Used for communication between unrelated processes
    - Data is read in stream mode, without message boundaries
    - ## Message Queue:
-    - Not bidirectional (messages have a specific sender and receiver)
-    -  Allows asynchronous communication between processes
+    -Not bidirectional (messages have a specific sender and receiver)
+    - Allows asynchronous communication between processes
     - Maintains message boundaries and priority, providing more control over data flow
-
 
  
