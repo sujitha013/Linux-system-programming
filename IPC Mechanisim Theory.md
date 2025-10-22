@@ -12,3 +12,10 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
   ## 4. What is meant by “unicast” and “multicast” IPC?
   - In IPC, unicast communication refers to data exchange between two related processes, such as a parent and child process created using the fork() system call.
   - Multicast communication, on the other hand, involves data exchange between multiple unrelated processes, allowing one process to send messages to several receiving processes simultaneously.
+ ## 5. What is meant by PIPES?  
+ - Pipes are an IPC mechanism that allow communication between two related processes, typically a parent and child process created using the fork() system call.
+ -  Before creating a pipe, we need to define an integer array of two file descriptors:
+ -  One for reading
+ -  One for writing
+ -  These descriptors are automatically assigned to the next available indices in the file descriptor table.
+ -  To create a pipe, we use the pipe() system call, which takes the array of file descriptors as an argument and sets up the communication channel between the parent and child processes.
