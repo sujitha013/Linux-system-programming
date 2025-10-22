@@ -15,7 +15,9 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
  ## 5. What is meant by PIPES?  
  - Pipes are an IPC mechanism that allow communication between two related processes, typically a parent and child process created using the fork() system call.
  -  Before creating a pipe, we need to define an integer array of two file descriptors:
- -  One for reading
  -  One for writing
+ -  One for reading 
  -  These descriptors are automatically assigned to the next available indices in the file descriptor table.
  -  To create a pipe, we use the pipe() system call, which takes the array of file descriptors as an argument and sets up the communication channel between the parent and child processes.
+## 6. What is meant by Blocking Calls? 
+- Blocking calls are system or function calls that pause the execution of a process or program until a specific event occurs, such as waiting for user input or data from another process. The process cannot proceed until the required action is completed.
