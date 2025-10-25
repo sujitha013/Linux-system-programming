@@ -123,7 +123,7 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
   - 2.Permissions – Specifies access rights for the queue.
   - 3.Flag (e.g., IPC_CREAT) – Used to create the queue if it doesn’t already exist.
   -  ## Example:
-  -  msgget(key, 0666 | IPC_CREAT);.
+  -  msgget(key, 0666 | IPC_CREAT);
 ##22. Where was the message queue created?
 -A message queue is created and maintained in the kernel space.
    -This allows it to be accessed by multiple processes for communication.
