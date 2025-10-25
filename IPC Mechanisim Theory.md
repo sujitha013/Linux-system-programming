@@ -130,13 +130,13 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
    - The kernel manages the storage, synchronization, and message ordering internally.
 ##23. What is meant by Shared Memory?
 -Shared Memory is one of the Inter-Process Communication (IPC) mechanisms and is considered the fastest method among all IPC mechanisms.
-    - It allows multiple processes to communicate by sharing a common block of memory.
-    - The shared memory segment is created in the user space, and processes can access it using pointers to the base address.
-    - However, the major drawback of shared memory is the lack of synchronization — multiple processes can modify the same memory at the same time, which can         lead to data inconsistency.
+      It allows multiple processes to communicate by sharing a common block of memory.
+      The shared memory segment is created in the user space, and processes can access it using pointers to the base address.
+      However, the major drawback of shared memory is the lack of synchronization — multiple processes can modify the same memory at the same time, which can         lead to data inconsistency.
  ##24. Why we use Shared Memory?
 -We use Shared Memory when we want to avoid the overhead of system calls used for frequent process switching.
-   - It allows multiple processes to access the same memory segment directly, making communication faster and more efficient.
-   - Shared memory is ideal for situations where large amounts of data need to be exchanged quickly between processes.
+     It allows multiple processes to access the same memory segment directly, making communication faster and more efficient.
+     Shared memory is ideal for situations where large amounts of data need to be exchanged quickly between processes.
 ##25. Difference between Shared Memory and Message Queues?
 - ## Difference between Message Queue and Shared Memory.
    -  ## Message Queue:
