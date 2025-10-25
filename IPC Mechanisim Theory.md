@@ -115,6 +115,45 @@ There are five main types of Inter-Process Communication (IPC) mechanisms:
   - ## Message Queue:
    - Not bidirectional (messages have a specific sender and receiver)
    - Allows asynchronous communication between processes
-   - Maintains message boundaries and priority, providing more control over data flow 
+   - Maintains message boundaries and priority, providing more control over data flow.
+##21. What is the system call used to create the message queue?
+- To create a message queue, we use the msgget() system call, which is defined in the <sys/msg.h> header file.
+- The msgget() call accepts three arguments:
+  - 1.Key – A unique identifier defined by the user.
+  - 2.Permissions – Specifies access rights for the queue.
+  - 3.Flag (e.g., IPC_CREAT) – Used to create the queue if it doesn’t already exist.
+  -  ## Example:
+  -  msgget(key, 0666 | IPC_CREAT);
+##22. Where was the message queue created?
+-A message queue is created and maintained in the kernel space.
+   -This allows it to be accessed by multiple processes for communication.
+   - The kernel manages the storage, synchronization, and message ordering internally.
+##23. What is meant by Shared Memory?
+-Shared Memory is one of the Inter-Process Communication (IPC) mechanisms and is considered the fastest method among all IPC mechanisms.
+    - It allows multiple processes to communicate by sharing a common block of memory.
+    - The shared memory segment is created in the user space, and processes can access it using pointers to the base address.
+    - However, the major drawback of shared memory is the lack of synchronization — multiple processes can modify the same memory at the same time, which can         lead to data inconsistency.
+ ##24. Why we use Shared Memory?
+-We use Shared Memory when we want to avoid the overhead of system calls used for frequent process switching.
+   - It allows multiple processes to access the same memory segment directly, making communication faster and more efficient.
+   - Shared memory is ideal for situations where large amounts of data need to be exchanged quickly between processes.
+##25. Difference between Shared Memory and Message Queues?
+- ## Difference between Message Queue and Shared Memory.
+   -  ## Message Queue:
+       - Provides synchronization automatically
+       - Slower because data is copied between kernel and user space
+       - Requires system calls (msgget(), msgsnd(), msgrcv())
+       - Stores messages in a queue structure in kernel space
+       - Useful for discrete message exchange between processes       
+   - ## Shared Memory:
+      - Does not provide synchronization (requires semaphores/mutexes)
+      - Very fast, as processes directly access the same memory segment
+      - System calls needed only for creation and attachment (shmget(), shmat())
+      - Stores data in a common memory block accessible by processes
+      - Useful for sharing large amounts of data efficiently
+  ## 26. What is use of stat command?
+                  
+     
+     
 
  
